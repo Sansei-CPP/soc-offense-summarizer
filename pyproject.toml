@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "soc-offense-summarizer"
+version = "1.0.0"
+description = "RAG service that turns a SIEM offense into a structured, analyst-ready AI triage summary (local Ollama)."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+    "ollama>=0.4.0",
+    "pydantic>=2.5",
+    "numpy>=1.24",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.4"]
+
+[project.scripts]
+soc-summarize = "soc_summarizer.cli:main"
+
+[tool.setuptools]
+packages = ["soc_summarizer"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
